@@ -1,8 +1,8 @@
 from pathlib import Path
 from typing import Optional
 
-from qpm import profiles
-from qpm.profiles import Profile
+from qbpm import profiles
+from qbpm.profiles import Profile
 
 
 def check_is_empty(path: Path):

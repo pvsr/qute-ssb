@@ -1,7 +1,7 @@
 from os import environ
 from pathlib import Path
 
-from qpm.main import main
+from qbpm.main import main
 
 
 def test_profile_dir_option(tmp_path: Path):

@@ -3,8 +3,8 @@ from os import environ
 from pathlib import Path
 from typing import Any, Callable, Optional
 
-from qpm import operations, profiles
-from qpm.profiles import Profile
+from qbpm import operations, profiles
+from qbpm.profiles import Profile
 
 
 def main(mock_args=None) -> None:

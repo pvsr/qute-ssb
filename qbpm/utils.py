@@ -18,7 +18,7 @@ def user_data_dir() -> Path:
     print(
         "If you're interested in adding support for another OS, send a PR "
         "to github.com/pvsr/qbpm adding the location of qutebrowser data such "
-        "as history.sqlite on your OS to user_data_dir() in qpm/utils.py.",
+        "as history.sqlite on your OS to user_data_dir() in qbpm/utils.py.",
         file=stderr,
     )
     exit(1)
