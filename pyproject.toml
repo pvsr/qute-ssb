@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "qbpm"
+version = "0.3"
+description = "qutebrowser profile manager"
+license = "GPL-3.0-or-later"
+authors = [
+  "Peter Rice <peter@peterrice.xyz>"
+]
+readme = "README.md"
+repository = "https://git.sr.ht/~pvsr/qpm"
+homepage = "https://git.sr.ht/~pvsr/qpm"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pyxdg = "^0.26"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+
+[tool.poetry.scripts]
+qbpm = "qbpm.main:main"
