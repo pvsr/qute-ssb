@@ -52,6 +52,16 @@ $ qutebrowser --basedir qb-profile
  - Pip: `pip install git+https://github.com/pvsr/qbpm.git#egg=qbpm`
  - Arch: [qbpm-git](https://aur.archlinux.org/packages/qbpm-git) in the AUR
  - Nix: clone the repository and run `nix-env -if default.nix`
+ - MacOS: For command-line only usage, the pip command above is sufficient, but
+   if you would like to set qbpm as the default browser app, first clone this
+   repository, then install platypus by running `brew install playtpus`, and
+   finally install the app by running `platypus -P contrib/qbpm.platypus
+   /Applications/qbpm.app` inside the cloned repository. You should then be
+   able to select qbpm as your default browser under: System Preferences
+   \> General > Default web browser. Note that there is currently [an
+   issue](https://github.com/qutebrowser/qutebrowser/issues/3719) with
+   qutebrowser itself that results in unnecessary `file:///*` tabs being
+   opened.
 
 ## Future ideas that may or may not happen
 - Release through github

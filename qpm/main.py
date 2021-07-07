@@ -70,10 +70,13 @@ def main(mock_args=None) -> None:
     desktop = subparsers.add_parser(
         "desktop", help="create a desktop file for an existing profile"
     )
+    desktop.add_argument("-c", "--choose", action="store_true",
+                         help="create a desktop entry that prompts you to choose between profiles")
     desktop.add_argument(
-        "profile_name", metavar="profile", help="profile to create a desktop file for"
+        "profile_names", nargs="*", metavar="profile", help="profiles to create desktops file for"
     )
-    desktop.set_defaults(operation=lambda args: operations.desktop(build_profile(args)))
+    desktop.set_defaults(operation=lambda args:
+                         operations.desktop(build_profiles(args), args))
 
     launch = subparsers.add_parser(
         "launch", aliases=["run"], help="launch qutebrowser with the given profile"
@@ -104,6 +107,21 @@ def main(mock_args=None) -> None:
 
     list_ = subparsers.add_parser("list", help="list existing profiles")
     list_.set_defaults(operation=lambda args: operations.list_())
+
+    choose = subparsers.add_parser("choose",
+                                   help="choose profile using rofi, dmenu, or an applescript dialog")
+    choose.add_argument(
+        "-m",
+        "--menu",
+        help="select which menu application to use",
+    )
+    choose.add_argument(
+        "-f",
+        "--foreground",
+        action="store_true",
+        help="launch qutebrowser in the foreground and print its stdout and stderr to the console",
+    )
+    choose.set_defaults(operation=lambda args: operations.choose(args))
 
     edit = subparsers.add_parser(
         "edit", help="edit a profile's config.py using $EDITOR"
@@ -173,6 +191,11 @@ def then_launch(
 
 def build_profile(args: argparse.Namespace) -> Profile:
     return Profile(args.profile_name, args.profile_dir, args.set_app_id)
+
+
+def build_profiles(args: argparse.Namespace) -> list[Profile]:
+    return [Profile(profile_name, args.profile_dir, args.set_app_id)
+            for profile_name in args.profile_names]
 
 
 if __name__ == "__main__":
